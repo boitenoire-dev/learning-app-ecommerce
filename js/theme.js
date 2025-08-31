@@ -72,7 +72,6 @@
             });
         };
     };  
-     
     
     /*Function Calls*/
     mainNavbar ();

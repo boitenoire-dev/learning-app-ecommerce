@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: website-deployment
+  name: website-deployment
+spec: #spec for pod resource
+  replicas: 1
+  selector:
+    matchLabels:
+      app: website-deployment
+  template:
+    metadata:
+      labels:
+        app: website-deployment
+    spec:
+      containers:
+        - name: website-deployment
+          image: boitenoire/learning-app-ecommerce:latest
+          imagePullPolicy: Always
+          env:
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mariadb-root-passwd
+                key: mariadb-root-passwd
+          - name: FEATURE_DARK_MODE
+            valueFrom:
+              configMapKeyRef:
+                name: feature-toggle-config
+                key: FEATURE_DARK_MODE
+          - name: DB_USER
+            value: ecomuser
+          - name: DB_NAME
+            value: ecomdb
+          - name: DB_HOST
+            value: mariadb-service
+          ports:
+          - containerPort: 80
+          name: website-deployment

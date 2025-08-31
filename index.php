@@ -104,7 +104,7 @@
             <div class="row it_works">
               <?php
 
-                        // $link = mysqli_connect('172.20.1.101', 'ecomuser', 'ecompassword', 'ecomdb');
+                        //$link = mysqli_connect('172.31.39.48', 'ecomuser', 'ecompassword', 'ecomdb');
                         // Fetch database connection details directly from environment variables
                         $dbHost = getenv('DB_HOST');
                         $dbUser = getenv('DB_USER');
@@ -182,5 +182,7 @@
         <script src="vendors/owl_carousel/owl.carousel.min.js"></script>
         <!-- Theme js -->
         <script src="js/theme.js"></script>
+        <!-- Theme js -->
+        <script src="js/dark-mode.js"></script>
     </body>
 </html>

@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb-service
+spec:
+  selector:
+    app: mariadb
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mariadb-sts
+spec: #spec for deployment resource
+  serviceName: "mariadb-service"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mariadb
+  template:
+    metadata:
+      labels:
+        app: mariadb
+    spec: #spec for pod resource
+      containers:
+      - name: mariadb
+        image: mariadb
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: shell-script
+          mountPath: /docker-entrypoint-initdb.d
+        env:
+        - name: MARIADB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mariadb-root-passwd
+              key: mariadb-root-passwd
+        - name: MARIADB_DATABASE  
+          value: ecomdb
+        - name: MARIADB_USER        
+          value: ecomuser
+        - name: MARIADB_PASSWORD    
+          value: ecompassword
+      volumes:
+      - name: shell-script
+        configMap:
+          name: mariadb-init-script
+          defaultMode: 0744
+
+
+
+      

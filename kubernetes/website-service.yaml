@@ -1,0 +1,20 @@
+# https://repost.aws/knowledge-center/eks-load-balancers-troubleshooting
+  # we needed to install a load balacer controller in order to use EKS auto mode to auto create load balancers
+apiVersion: v1
+kind: Service
+metadata:
+  name: website-service
+  annotations:
+  # This annotation is to create public facing ELB.  
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"  
+    #https://github.com/kubernetes-sigs/aws-load-balancer-controller/issues/3212
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+spec:
+  selector:
+    app: website-deployment
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30080
