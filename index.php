@@ -182,7 +182,5 @@
         <script src="vendors/owl_carousel/owl.carousel.min.js"></script>
         <!-- Theme js -->
         <script src="js/theme.js"></script>
-        <!-- Theme js -->
-        <script src="js/dark-mode.js"></script>
     </body>
 </html>
