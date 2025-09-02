@@ -21,6 +21,57 @@
 
         <!-- Theme style CSS -->
         <link href="css/style.css" rel="stylesheet">
+        <!-- Dark Mode CSS -->
+        <?php if (getenv('FEATURE_DARK_MODE') === 'true'): ?>
+            <style>
+                :root {
+                    --bg-primary: #121212;
+                    --bg-secondary: #1f1f1f;
+                    --bg-tertiary: #2d2d2d;
+                    --text-primary: #ffffff;
+                    --text-secondary: #cccccc;
+                    --border-color: #444444;
+                }
+                
+                body {
+                    background-color: var(--bg-primary) !important;
+                    color: var(--text-primary) !important;
+                }
+                
+                .navbar-light {
+                    background-color: var(--bg-secondary) !important;
+                }
+                
+                .navbar-light .navbar-brand,
+                .navbar-light .navbar-nav .nav-link {
+                    color: var(--text-primary) !important;
+                }
+                
+                .card {
+                    background-color: var(--bg-tertiary) !important;
+                    color: var(--text-primary) !important;
+                    border-color: var(--border-color) !important;
+                }
+                
+                .form-control {
+                    background-color: var(--bg-tertiary) !important;
+                    color: var(--text-primary) !important;
+                    border-color: var(--border-color) !important;
+                }
+                
+                .form-control:focus {
+                    background-color: var(--bg-tertiary) !important;
+                    color: var(--text-primary) !important;
+                    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25) !important;
+                }
+                
+                footer {
+                    background-color: var(--bg-secondary) !important;
+                    color: var(--text-primary) !important;
+                }
+            </style>
+            <?php endif; ?>
+
 <!--        <link href="css/responsive.css" rel="stylesheet">  -->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -181,6 +232,7 @@
         <!-- owl_carousel js -->
         <script src="vendors/owl_carousel/owl.carousel.min.js"></script>
         <!-- Theme js -->
-        <script src="js/theme.js"></script>
+        <script src="js/theme.js">
+        </script>
     </body>
 </html>
