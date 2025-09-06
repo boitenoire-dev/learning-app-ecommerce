@@ -82,6 +82,9 @@
         <![endif]-->
     </head>
     <body>
+        <div class="promo-banner">
+          <p><strong>Limited Time Offer:</strong> Get 30% off all services until September 15! <a href="#contact">Contact us now</a>.</p>
+        </div>
         <!--==========Main Header==========-->
         <header class="main_header_area">
             <nav class="navbar navbar-default navbar-fixed-top" id="main_navbar">
@@ -133,6 +136,9 @@
                     </div>
                 </div><!-- /.container-fluid -->
             </nav>
+            <div class="promo-banner" style="background-color: red; color: white; text-align: center; padding: 10px; font-size: 16px; font-weight: bold;">
+            Limited Time Offer: Get 20% off on all gadgets! Use code: GADGET20 
+            </div>
         </header>
         <!--==========Main Header==========-->
 

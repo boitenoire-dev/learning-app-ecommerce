@@ -38,3 +38,7 @@ spec: #spec for pod resource
           ports:
           - containerPort: 80
           name: website-deployment
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
