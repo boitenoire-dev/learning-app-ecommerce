@@ -40,5 +40,11 @@ spec: #spec for pod resource
           name: website-deployment
           readinessProbe:
             httpGet:
+              path: / #health endpoint of the application, for a production app this should be a dedicated endpoint like /healthz
+              port: 80
+          livenessProbe:
+            httpGet:
               path: /
               port: 80
+            initialDelaySeconds: 3 #wait a few seconds before the first prode
+            periodSeconds: 3 #perform a liveness check every 3 seconds
