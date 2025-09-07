@@ -46,5 +46,5 @@ spec: #spec for pod resource
             httpGet:
               path: /
               port: 80
-            initialDelaySeconds: 3 #wait a few seconds before the first prode
-            periodSeconds: 3 #perform a liveness check every 3 seconds
+            initialDelaySeconds: 3 #wait a 3 seconds before the first prode
+            periodSeconds: 5 #perform a liveness check every 5 seconds
