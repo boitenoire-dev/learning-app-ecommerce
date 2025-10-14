@@ -34,6 +34,8 @@ spec: #spec for deployment resource
         volumeMounts:
         - name: shell-script
           mountPath: /docker-entrypoint-initdb.d
+        - mountPath: /var/lib/mysql
+          name: data-volume
         env:
         - name: MARIADB_ROOT_PASSWORD
           valueFrom:
@@ -51,6 +53,19 @@ spec: #spec for deployment resource
         configMap:
           name: mariadb-init-script
           defaultMode: 0744
+      - name: data-volume
+        persistentVolumeClaim:
+            claimName: data-volume
+  volumeClaimTemplates:
+  - metadata:
+      name: data-volume
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      storageClassName: aws-storage
+      resources:
+        requests:
+          storage: 500Mi
 
 
 

@@ -1,0 +1,7 @@
+#prereqs to get this working are detailed here: https://repost.aws/knowledge-center/eks-troubleshoot-ebs-volume-mounts
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: aws-storage
+provisioner: ebs.csi.eks.amazonaws.com
+volumeBindingMode: WaitForFirstConsumer
