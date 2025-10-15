@@ -10,9 +10,7 @@ jobs:
               uses: actions/checkout@v5
 
             - name: Welcome message and some fun ASCII Artwork
-              run: |
-                echo "Hello the pipeline is running"
-                cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt
+              run: echo "Hello the pipeline is running"
             
             - name: List files
               run: ls
