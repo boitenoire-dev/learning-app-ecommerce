@@ -9,7 +9,7 @@ jobs:
             - name: Checkout Repo
               uses: actions/checkout@v5
 
-            - name: Welcome message and some fun ASCII Artwork
+            - name: Welcome message
               run: echo "Hello the pipeline is running"
             
             - name: List files
