@@ -3,17 +3,31 @@ name: Build and deploy changes
 on: push
 
 jobs:
-    first_job:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout Repo
-              uses: actions/checkout@v5
+  checkout_repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v5
 
-            - name: Welcome message
-              run: echo "Hello the pipeline is running"
-            
-            - name: List files
-              run: ls
-
-            - name: Read file
-              run: cat README.md
+      - name: Welcome message
+        run: echo "Hello the pipeline is running"
+  build_and_push:
+    needs: checkout_repo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Docker Buildx for M4 Mac architecture
+        env:
+          PLATFORM_NAME: linux/amd64
+          DOCKER_USERNAME: boitenoire
+          IMAGE_NAME: learning-app-ecommerce
+        run: docker buildx build --platform $PLATFORM_NAME -t $DOCKER_USERNAME/$IMAGE_NAME:latest . --push
+      - name: Login to the Docker Hub
+        env:
+          DOCKER_USERNAME: boitenoire
+        run: echo docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD
+      - name: Docker Publish
+        env:
+          CONTAINER_REGISTRY: docker.io
+          DOCKER_USERNAME: boitenoire
+          IMAGE_NAME: learning-app-ecommerce
+        run: echo docker push $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
