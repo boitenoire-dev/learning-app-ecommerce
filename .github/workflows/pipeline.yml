@@ -15,16 +15,16 @@ jobs:
     needs: checkout_repo
     runs-on: ubuntu-latest
     steps:
+      - name: Login to the Docker Hub
+        env:
+          DOCKER_USERNAME: boitenoire
+        run: echo docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD
       - name: Set up Docker Buildx for M4 Mac architecture
         env:
           PLATFORM_NAME: linux/amd64
           DOCKER_USERNAME: boitenoire
           IMAGE_NAME: learning-app-ecommerce
         run: docker buildx build --platform $PLATFORM_NAME -t $DOCKER_USERNAME/$IMAGE_NAME:latest . --push
-      - name: Login to the Docker Hub
-        env:
-          DOCKER_USERNAME: boitenoire
-        run: echo docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD
       - name: Docker Publish
         env:
           CONTAINER_REGISTRY: docker.io
